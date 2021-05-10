@@ -27,17 +27,27 @@ const App = () => {
   const addNote = (text) => {
     const date = new Date();
     const newNote = {
-      id:nanoid(),
+      id: nanoid(),
       text: text,
       date: date.toLocaleDateString()
     }
 
     const newNotes = [...notes, newNote];
-    setNotes(newNotes); 
+    setNotes(newNotes);
+  };
+
+  const delnote = (id) => {
+    const newNotes = notes.filter((note) => note.id !== id);
+    setNotes(newNotes);
   }
+
   return (
     <div className="container">
-      <NotesList notes={notes} handleAddNote={addNote}/>
+      <NotesList
+        notes={notes}
+        handleAddNote={addNote}
+        handleDelNote={delnote}
+      />
   </div>
   );
 }
