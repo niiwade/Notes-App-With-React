@@ -28,6 +28,8 @@ const App = () => {
 
   const [searchText, setSearchText] = useState('');
 
+  const[darkMode, setDarkMode] = useState(false);
+
   const addNote = (text) => {
     const date = new Date();
     const newNote = {
@@ -46,10 +48,9 @@ const App = () => {
   }
 
   return (
-    <div className="container">
-
-      <Header/>
-      
+    <div className={`${darkMode && 'darkMode'}`}>
+      <div className="container">
+      <Header handleToggleDarkMode={ setDarkMode}/>
       <Search handleSearchNote={setSearchText}/>
 
       <NotesList
@@ -60,6 +61,7 @@ const App = () => {
         handleDelNote={delnote}
       />
   </div>
+    </div>
   );
 }
 
